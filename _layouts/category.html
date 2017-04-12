@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+    {% include header.html %}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+
+      <h2 class="breadcrumbs">
+         <a href="{{ site.base_url }}">Docs</a>
+         <span class="separator">/</span>
+         <span class="current">{{ page.title }}</span>
+      </h2>
+
+       {{ content }}
+
+        <ul class="page-list">
+          {% for other_page in site.pages %}
+            {% if other_page.layout != "category" and other_page.layout != "page" and other_page.category == page.category %}
+            <li>
+               <a href="{{ site.base_url }}{{ other_page.url }}.html">{{ other_page.title }}</a></li>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </main>
+
+  </body>
+</html>
